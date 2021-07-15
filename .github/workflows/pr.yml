@@ -7,15 +7,16 @@ on:
 
 jobs:
   danger:
-    if: ${{ github.event.pull_request.action == 'edited' || 'opened' || 'synchronize' || 'reopened'}}
-    name: Show some text
+    if: github.event.pull_request.action == 'edited' || 'opened' || 'synchronize' || 'reopened'
+    name: Danger
     runs-on: ubuntu-latest
     steps:
       - name: Show some text
         run: echo "THIS IS DANGER TEST"
 
   secondjob:
-    if: ${{ github.event.pull_request.action == 'opened' || 'synchronize' || 'reopened'}}
+    if: github.event.pull_request.action == 'opened' || 'synchronize' || 'reopened'
+    name: Text
     runs-on: ubuntu-latest
     steps:
       - name: Show some text
