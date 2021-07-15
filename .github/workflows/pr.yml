@@ -7,7 +7,7 @@ on:
 
 jobs:
   danger:
-    if: github.event.pull_request.action == 'edited' || 'opened' || 'synchronize' || 'reopened'
+    if: github.event.action == 'edited' || 'opened' || 'synchronize' || 'reopened'
     name: Danger
     runs-on: ubuntu-latest
     steps:
@@ -15,7 +15,7 @@ jobs:
         run: echo "THIS IS DANGER TEST"
 
   secondjob:
-    if: github.event.pull_request.action == 'opened' || 'synchronize' || 'reopened'
+    if: github.event.action == 'opened' || 'synchronize' || 'reopened'
     name: Text
     runs-on: ubuntu-latest
     steps:
