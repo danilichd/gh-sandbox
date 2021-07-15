@@ -2,11 +2,12 @@ name: Test PR Workflow
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, edited]
     branches: [main]
 
 jobs:
   danger:
-    if: github.event.action == 'edited' || 'opened' || 'synchronize' || 'reopened'
+    if: github.event.action == 'edited' || 'opened'
     name: Danger
     runs-on: ubuntu-latest
     steps:
@@ -14,7 +15,7 @@ jobs:
         run: echo "THIS IS DANGER TEST"
 
   secondjob:
-    if: github.event.action == 'opened' || 'synchronize' || 'reopened'
+    if: github.event.action == 'opened'
     name: Text
     runs-on: ubuntu-latest
     steps:
