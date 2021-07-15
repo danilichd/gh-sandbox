@@ -11,7 +11,7 @@ jobs:
     name: Danger
     runs-on: ubuntu-latest
     steps:
-      - name: Show some text
+      - name: SHOW DANGER TEXT
         run: echo "THIS IS DANGER TEST"
 
   secondjob:
@@ -19,5 +19,5 @@ jobs:
     name: Text
     runs-on: ubuntu-latest
     steps:
-      - name: Show some text
+      - name: SHOW SECOND JOB TEXT
         run: echo "THIS IS SECOND JOB"
