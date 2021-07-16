@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: SHOW SECOND JOB TEXT
-        run: echo "THIS IS SECOND JOB"
+        run: echo "THIS IS SECOND JOB TEXT"
