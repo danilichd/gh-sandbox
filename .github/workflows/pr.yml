@@ -15,7 +15,7 @@ jobs:
         run: echo "THIS IS DANGER TEST"
 
   secondjob:
-    if: github.event.action == 'opened' || 'synchronize'
+    if: github.event.action == 'opened' || 'reopened'
     name: Text
     runs-on: ubuntu-latest
     steps:
