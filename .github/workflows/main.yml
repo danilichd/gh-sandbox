@@ -1,9 +1,9 @@
 name: Main
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    branches: [main]
 
 jobs:
   lint:
@@ -15,6 +15,9 @@ jobs:
         with:
           workflow: Lint
           token: ${{ secrets.PERSONAL_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Echo stuff
         run: |
           echo "THIS IS MAIN"
           echo $GITHUB_RUN_ID
