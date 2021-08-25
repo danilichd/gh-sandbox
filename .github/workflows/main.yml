@@ -15,7 +15,10 @@ jobs:
         with:
           workflow: Lint
           token: ${{ secrets.PERSONAL_TOKEN }}
+<<<<<<< HEAD
           ref: ${{ github.event.pull_request.head.ref }}
+=======
+>>>>>>> 6043f02 (chore: move run clause to a separate step)
 
       - name: Echo stuff
         run: |
