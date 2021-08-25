@@ -1,0 +1,21 @@
+name: Main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke Lint Workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Lint
+          token: ${{ secrets.PERSONAL_TOKEN }}
+        run: |
+          echo "THIS IS MAIN"
+          echo $GITHUB_RUN_ID
+          echo $GITHUB_SHA
