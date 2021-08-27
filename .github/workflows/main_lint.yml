@@ -27,4 +27,4 @@ jobs:
           echo "GITHUB_RUN_ID is $GITHUB_RUN_ID"
           echo "workflow run id is ${{ github.event.workflow_run.id }}"
           echo "gihub sha is $GITHUB_SHA"
-          echo "PR number is $env.PR"
+          echo "PR number is ${{ steps.findPr.outputs.pr }}"
