@@ -7,26 +7,10 @@ jobs:
   lint:
     name: Check:Lint
     runs-on: ubuntu-latest
-    env:
-      PR_NUM: staff-portal-pr-${{ github.event.number }}
     steps:
-      - uses: actions/checkout@v1
-      # Find the PR associated with this push, if there is one.
-      - uses: jwalton/gh-find-current-pr@v1
-        id: findPr
-        with:
-          # Can be "open", "closed", or "all".  Defaults to "open".
-          state: open
-      # This will echo "Your PR is 7", or be skipped if there is no current PR.
-      - run: echo "Your PR is ${PR}"
-        if: success() && steps.findPr.outputs.number
-        env:
-          PR: ${{ steps.findPr.outputs.pr }}
-
       - name: Run linter
         run: |
           echo "THIS IS LINTER"
           echo $GITHUB_RUN_ID
           echo ${{ github.event.workflow_run.id }}
           echo $GITHUB_SHA
-          echo $PR_NUM
