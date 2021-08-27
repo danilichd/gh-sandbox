@@ -19,6 +19,10 @@ jobs:
         with:
           # Can be "open", "closed", or "all".  Defaults to "open".
           state: open
+      - run: echo "Your PR is ${PR}"
+        if: success() && steps.findPr.outputs.number
+        env:
+          PR: ${{ steps.findPr.outputs.pr }}
 
       - name: Run linter
         run: |
