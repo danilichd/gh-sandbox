@@ -7,11 +7,14 @@ jobs:
   lint:
     name: Check:Lint
     runs-on: ubuntu-latest
+
+    env:
+      KUBER: staff-portal-pr-${{ steps.findPr.outputs.pr }}
+
     steps:
-      - name: Get PR number
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v1
       # Find the PR associated with this push, if there is one.
-        uses: jwalton/gh-find-current-pr@v1
+      - uses: jwalton/gh-find-current-pr@v1
         id: findPr
         with:
           # Can be "open", "closed", or "all".  Defaults to "open".
@@ -23,4 +26,4 @@ jobs:
           echo "GITHUB_RUN_ID is $GITHUB_RUN_ID"
           echo "workflow run id is ${{ github.event.workflow_run.id }}"
           echo "gihub sha is $GITHUB_SHA"
-          echo "PR number is ${{ steps.findPr.outputs.pr }}"
+          echo "PR number is $KUBER"
