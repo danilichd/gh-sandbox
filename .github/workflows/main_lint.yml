@@ -7,6 +7,8 @@ jobs:
   lint:
     name: Check:Lint
     runs-on: ubuntu-latest
+    env:
+      PR_NUM: staff-portal-pr-${{ github.event.number }}
     steps:
       - name: Run linter
         run: |
