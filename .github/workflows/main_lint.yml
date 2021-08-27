@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      KUBER: staff-portal-pr-${{ steps.findPr.outputs.pr }}
+      KUBER: staff-portal-pr-badaboom
 
     steps:
       - uses: actions/checkout@v1
@@ -30,4 +30,5 @@ jobs:
           echo "GITHUB_RUN_ID is $GITHUB_RUN_ID"
           echo "workflow run id is ${{ github.event.workflow_run.id }}"
           echo "gihub sha is $GITHUB_SHA"
-          echo "PR number is $KUBER"
+          echo "KUBER number is ${{ env.KUBER }}"
+          echo "PR number is ${{ env.PR }}"
