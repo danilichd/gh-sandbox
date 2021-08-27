@@ -16,3 +16,4 @@ jobs:
           echo $GITHUB_RUN_ID
           echo ${{ github.event.workflow_run.id }}
           echo $GITHUB_SHA
+          echo $PR_NUM
