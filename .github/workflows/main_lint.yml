@@ -4,13 +4,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  lint:
-    name: Check:Lint
+  getprnumber:
+    name: Get PR Number
     runs-on: ubuntu-latest
-
-    env:
-      KUBER: staff-portal-pr-badaboom
-
+    outputs:
+      prNumber: ${{ steps.findPr.outputs.pr }}
     steps:
       - uses: actions/checkout@v1
       # Find the PR associated with this push, if there is one.
@@ -24,11 +22,19 @@ jobs:
         env:
           PR: ${{ steps.findPr.outputs.pr }}
 
+  lint:
+    name: Check:Lint
+    needs: [getprnumber]
+    runs-on: ubuntu-latest
+
+    env:
+      PRN: ${{ needs.getprnumber.outputs.prNumber }}
+
+    steps:
       - name: Run linter
         run: |
           echo "THIS IS LINTER"
           echo "GITHUB_RUN_ID is $GITHUB_RUN_ID"
           echo "workflow run id is ${{ github.event.workflow_run.id }}"
           echo "gihub sha is $GITHUB_SHA"
-          echo "KUBER number is ${{ env.KUBER }}"
-          echo "PR number is ${{ env.PR }}"
+          echo "PR number is ${{ env.PRN }}"
