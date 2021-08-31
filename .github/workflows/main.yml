@@ -2,8 +2,7 @@ name: Main
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, edited]
-    branches: [main]
+    branches: [master]
 
 jobs:
   lint:
@@ -16,6 +15,7 @@ jobs:
           workflow: Lint
           token: ${{ secrets.PERSONAL_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
+          inputs: '{"pr-number": "${{ github.event.number }}"}'
 
       - name: Echo stuff
         run: |
