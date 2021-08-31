@@ -1,0 +1,38 @@
+name: Show Text
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: "Pull request number to send status check"
+        required: false
+
+jobs:
+  showtxt:
+    name: Show the text
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set status check
+        uses: niteoweb/pull_request_status_action@v1.0.0
+        with:
+          pr_number: ${{ github.event.inputs.pr-number }}
+          state: pending
+          repository: ${{ github.repository }}
+          context: "PR Merge Job / Show Text"
+          target_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+      - name: Run linter
+        run: |
+          echo "THIS IS TEXT"
+
+      - name: Set status check
+        uses: niteoweb/pull_request_status_action@v1.0.0
+        with:
+          pr_number: ${{ github.event.inputs.pr-number }}
+          state: ${{ job.status }}
+          repository: ${{ github.repository }}
+          context: "PR Merge Job / Show Text"
+          target_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}

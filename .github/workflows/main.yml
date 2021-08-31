@@ -18,8 +18,14 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           inputs: '{"pr-number": "${{ github.event.number }}"}'
 
-      - name: Echo stuff
-        run: |
-          echo "THIS IS MAIN"
-          echo $GITHUB_RUN_ID
-          echo $GITHUB_SHA
+  showtxt:
+    name: Show
+    runs-on: ubuntu-latest
+    steps:
+      - name: Invoke Lint Workflow
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: Show Text
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          inputs: '{"pr-number": "${{ github.event.number }}"}'
