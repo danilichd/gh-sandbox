@@ -37,7 +37,7 @@ jobs:
           script: |
             const body = `Your temploy is ready 🎉<br />${{ issue_number }}`
             github.issues.createComment({ 
-              issue_number: context.issue.number, 
+              issue_number: ${{ github.event.inputs.pr-number }}, 
               owner: context.repo.owner, 
               repo: context.repo.repo, body 
               })
