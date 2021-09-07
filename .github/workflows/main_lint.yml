@@ -35,7 +35,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const body = `Your temploy is ready 🎉<br />${{ issue_number }}`
+            const body = `Your temploy is ready 🎉<br />`
             github.issues.createComment({ 
               issue_number: ${{ github.event.inputs.pr-number }}, 
               owner: context.repo.owner, 
