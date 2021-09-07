@@ -22,12 +22,14 @@ jobs:
           target_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+
       - name: Run linter
         run: |
           echo "THIS IS LINTER"
           echo $GITHUB_RUN_ID
           echo ${{ github.event.workflow_run.id }}
           echo $GITHUB_SHA
+
       - name: Set status check
         uses: niteoweb/pull_request_status_action@v1.0.0
         with:
@@ -38,3 +40,12 @@ jobs:
           target_url: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+
+      - name: Post link
+        uses: actions/github-script@v3.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { issue: { number: issue_number }, repo: { owner, repo }  } = context
+            const body = `Your temploy is ready 🎉<br />${{ issue_number }}`
+            github.issues.createComment({ issue_number, owner, repo, body })
